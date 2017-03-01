@@ -1,3 +1,10 @@
+/* 
+
+    An example Gruntfile 
+
+*/
+
+// Node.js convention to make something accesible like a "public" method
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -13,9 +20,10 @@ module.exports = function(grunt) {
       },
       sass : {
           options : {
-              outputStyle : 'expanded'
+              // What do you what the CSS to look like within the file?
+              outputStyle : 'compressed'
           },
-          dist : {
+          iCanBeNamedAnything : {
               files : [{
                   src : 'sass/style.scss',
                   dest : 'site/css/style.css'
@@ -28,13 +36,15 @@ module.exports = function(grunt) {
               livereload : true
           },
           scripts : {
+              // What files do we want to watch?
               files : ['sass/*.scss', 'site/js/*.js', 'site/index.html'],
-              tasks : ['concat', 'sass']
+              // Run these tasks again when the above files are modified
+              tasks : ['concat', 'sass'] 
           }
       }
   });
 
-  // Load the plugin that provides the "concat" task. 
+  // Load the plugin that provide the "concat", "sass", and "watch" tasks. 
   //                    &
   // npm install grunt-contrib-concat --save-dev
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -42,7 +52,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s)
-  // Automatically run when you enter 'grunt' in command line
+  //    - Automatically run when you enter 'grunt' in command line
   // Otherwise run a task with grunt 'taskName'
   grunt.registerTask('default', ['concat', 'sass', 'watch']);
 };
